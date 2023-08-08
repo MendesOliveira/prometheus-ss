@@ -60,8 +60,7 @@ services:
       - "82:82"
     environment: 
       - FORWARD_HOST=localhost
-      - FORWARD_PORT=9090
-      - BASIC_USERNAME=${QAUSER}
-      - BASIC_PASSWORD=${QAPASSWORD}
+      - BASIC_USERNAME=${USER}
+      - BASIC_PASSWORD=${PASSWORD}
     networks:
       - redelocal-prom
