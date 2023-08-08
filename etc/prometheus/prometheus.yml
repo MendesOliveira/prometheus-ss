@@ -1,0 +1,18 @@
+global:
+  scrape_interval:     15s 
+
+scrape_configs:
+
+  # Instancia Prometheus
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+  # Instancia Node Exporter
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['node_exporter:9100']
+  # Instancia Cadvisor
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']

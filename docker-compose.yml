@@ -1,0 +1,67 @@
+version: '3.0'
+
+volumes:
+  prometheus-local:
+    driver: local
+
+networks:
+  redelocal-prom:
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./etc/prometheus:/config
+      - prometheus-local:/prometheus
+    command:
+      - "--config.file=/config/prometheus.yml"
+    networks:
+      - redelocal-prom
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:"ro,rslave"
+    networks:
+      - redelocal-prom      
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.45.0     
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    restart: unless-stopped
+    privileged: true
+    networks:
+      - redelocal-prom
+
+  nginx:
+    build: 
+     context: .
+     dockerfile: ./etc/nginx/Dockerfile  
+    image: nginx
+    container_name: nginx
+    ports:
+      - "81:81"
+      - "82:82"
+    environment: 
+      - FORWARD_HOST=localhost
+      - FORWARD_PORT=9090
+      - BASIC_USERNAME=${QAUSER}
+      - BASIC_PASSWORD=${QAPASSWORD}
+    networks:
+      - redelocal-prom
