@@ -4,8 +4,7 @@ Esse repositório tem como objetivo orientar um Start-pack do Prometheus para re
 
 ## Tabela de Conteúdos
 
-- [Sobre](#Sobre)
-- [Funcionalidades](#funcionalidades)
+- [Sobre](#sobre)
 - [Demonstração](#demonstração)
 - [Instalação](#instalação)
 
@@ -17,4 +16,33 @@ Na maioria dos casos há a necessidade de instalação desses geradores de métr
 
 ## Demonstração
 
+![prometheus-basic-auth](https://github.com/MendesOliveira/prometheus-ss/assets/109288244/36062de7-fabc-4d87-b5ce-f6fc824ec4d6)
+
 ## Instalação
+
+```
+git clone https://github.com/MendesOliveira/prometheus-ss.git
+``` 
+
+Após realizar a clonagem do repositório, tenha certeza de que já tenha criado sua senha de autenticação dentro do arquivo de variáveis de ambiente .env!
+
+```
+
+touch .env
+
+```
+
+Feito isso, basta subir os containers do docker!
+
+```
+
+docker compose up -d --build
+
+```
+
+Para realizar a conexão em seu visualizador, basta selecionar *Basic Auth* como uma das configurações de autenticação do serviço.
+
+![image](https://github.com/MendesOliveira/prometheus-ss/assets/109288244/360a25c8-f790-4ac2-b807-733ea87f7252)
+
+
+
