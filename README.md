@@ -7,6 +7,7 @@ Esse repositório tem como objetivo orientar um Start-pack do Prometheus para re
 - [Sobre](#sobre)
 - [Demonstração](#demonstração)
 - [Instalação](#instalação)
+- [Exemplos](#Exemplos)
 
 ## Sobre
 
@@ -43,6 +44,10 @@ docker compose up -d --build
 Para realizar a conexão em seu visualizador, basta selecionar *Basic Auth* como uma das configurações de autenticação do serviço.
 
 ![image](https://github.com/MendesOliveira/prometheus-ss/assets/109288244/360a25c8-f790-4ac2-b807-733ea87f7252)
+
+## Exemplos
+
+![Captura de tela 2023-09-08 202620](https://github.com/MendesOliveira/prometheus-ss/assets/109288244/aeba89c6-5302-4ebf-bda8-b4beb4517369)
 
 
 
